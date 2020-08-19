@@ -56,3 +56,11 @@ function createLocation(ev, name = 'home') {
         })
 }
 
+function goToLocation(locId){
+    var currLoc = gFavLoc.find(loc => {
+        return loc.id === locId;
+    })
+
+    
+}
+
