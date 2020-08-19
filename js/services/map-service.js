@@ -2,7 +2,7 @@
     //{id, name, lat, lng, weather, createdAt, updatedAt}
 
 
-export const locService = {
+export const mapService = {
     getLocs: getLocs,
     getPosition: getPosition
 }

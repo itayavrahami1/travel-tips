@@ -1,23 +1,22 @@
 console.log('Main!');
 
-import { locService } from './services/loc.service.js'
-import { mapService } from './services/map.service.js'
-// import { addEvenetListeners } from './controllers/map-controller.js'
+import { mapService } from './services/map-service.js'
+import { mapController } from './controllers/map-controller.js'
 
 
-locService.getLocs()
+mapService.getLocs()
     .then(locs => console.log('locs', locs))
 
 window.onload = () => {
     // addEvenetListeners()
-    mapService.initMap()
+    mapController.initMap()
         .then(() => {
 
-            mapService.addMarker({ lat: 32.0749831, lng: 34.9120554 });
+            mapController.addMarker({ lat: 32.0749831, lng: 34.9120554 });
         })
         .catch(console.log('INIT MAP ERROR'));
 
-    locService.getPosition()
+    mapService.getPosition()
         .then(pos => {
 
             console.log('User position is:', pos.coords);
@@ -29,5 +28,5 @@ window.onload = () => {
 
 document.querySelector('.btn').addEventListener('click', (ev) => {
     console.log('Aha!', ev.target);
-    mapService.panTo(35.6895, 139.6917);
+    mapController.panTo(35.6895, 139.6917);
 })
