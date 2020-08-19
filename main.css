@@ -1,0 +1,29 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: tomato;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+}
+
+main {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+
+ul {
+    background-color: white;
+    height: 400px;
+    width: 30%;
+    margin-top: 0;
+}
+
+ul h2 {
+    align-self: center;
+}

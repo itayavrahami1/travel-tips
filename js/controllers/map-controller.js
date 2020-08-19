@@ -61,4 +61,20 @@ function onGoToLocation(){
 }
 
 
+function renderItems() {
+    mapService.createLocation(ev)
+        .then(items => {
+            const strHTMLs = items.map(item =>
+                `<li>
+                ${item.id} | $${item.name}| $${item.lat}| $${item.lng}| $${item.createdAt}
+                <button class="btn btn-delete" data-id="${item.id}">GO</button>
+                <button class="btn btn-delete" data-id="${item.id}">Delete</button>
+            </li>`)
+            document.querySelector('.location-list').innerHTML = strHTMLs.join('')
+        })
 
+}
+
+function onInsertLocation() {
+    var searchedLocation = document.querySelector('#search').value;
+}
