@@ -1,3 +1,4 @@
+import { mapService } from '../services/map-service.js'
 
 export const mapController = {
     initMap,
@@ -6,7 +7,6 @@ export const mapController = {
 }
 
 var map;
-var gLocations;
 
 export function initMap(lat = 32.0749831, lng = 34.9120554) {
 
@@ -18,7 +18,7 @@ export function initMap(lat = 32.0749831, lng = 34.9120554) {
                 center: { lat, lng },
                 zoom: 15
             })
-            map.addListener('click',createLocation)
+            map.addListener('click', onMapClick)
         })
 }
 
@@ -50,14 +50,9 @@ function _connectGoogleApi() {
     })
 }
 
-function createLocation(mapClick){
-    var coords = {lat: mapClick.latLng.lat(), lng: mapClick.latLng.lng()}
-
-    var pos = {
-        id:
-        coords:
-        name:
-    }
+function onMapClick(ev) {
+    mapService.createLocation(ev)
+        .then(res => {console.log(res,res.length);})
 }
 
 
