@@ -3,6 +3,7 @@
 import {mapStorage} from '../storage/loc-storage.js'
 const LOC_ID_URL = 'http://www.filltext.com/?rows=1&password={randomString|5}&pretty=true'
 const LOCS_KEY = 'myLocations'
+const LOC_NAME_INIT_URL = 'https://maps.googleapis.com/maps/api/geocode/json?latlng='
 
 var gFavLoc = [
     {
@@ -23,6 +24,8 @@ export const mapService = {
 var locs = [{ lat: 11.22, lng: 22.11 }]
 
 function getLocs() {
+    var locs = mapStorage.loadLocsFromStorage(LOCS_KEY);
+    // if (locs.length === 0) locs = gFavLoc;
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             resolve(locs);
@@ -40,12 +43,16 @@ function getPosition() {
 }
 
 function createLocation(ev, name = 'home') {
-    var idPrm = axios.get(LOC_ID_URL)
-    return idPrm.then(res => res.data[0].password)
-        .then(id => {
+
+    var locNameUrl = `${LOC_NAME_INIT_URL}${ev.latLng.lat()},${ev.latLng.lng()}&key=AIzaSyAzmpPcKgsno0kzRU0fquuoQ-QruuNIFRc`
+    var idPrm = axios.get(LOC_ID_URL);
+    var namePrm = axios.get(locNameUrl);
+
+    return Promise.all([idPrm, namePrm])
+        .then(values => {
             var loc = {
-                id,
-                name,
+                id: values[0].data[0]['password'],
+                name: values[1].data.results[0].formatted_address,
                 lat: ev.latLng.lat(),
                 lng: ev.latLng.lng(),
                 createdAt: Date.now(),
@@ -61,6 +68,6 @@ function goToLocation(locId){
         return loc.id === locId;
     })
 
-    
+
 }
 

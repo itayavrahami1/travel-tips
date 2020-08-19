@@ -4,6 +4,7 @@ export const mapController = {
     initMap,
     addMarker,
     panTo,
+    renderItems
 }
 
 var map;
@@ -52,27 +53,28 @@ function _connectGoogleApi() {
 
 function onMapClick(ev) {
     mapService.createLocation(ev, name)
-        .then(res => { console.log(res, res.length); })
+        .then(renderItems)
 }
 
-function onGoToLocation(){
+function onGoToLocation() {
     mapService.goToLocation(locId)
-    .then()
+        .then()
 }
 
 
 function renderItems() {
-    mapService.createLocation(ev)
-        .then(items => {
-            const strHTMLs = items.map(item =>
+    mapService.getLocs()
+        .then(Locs => {
+            const strHTMLs = Locs.map(loc =>
                 `<li>
-                ${item.id} | $${item.name}| $${item.lat}| $${item.lng}| $${item.createdAt}
-                <button class="btn btn-delete" data-id="${item.id}">GO</button>
-                <button class="btn btn-delete" data-id="${item.id}">Delete</button>
+                ${loc.id} | ${loc.name}| ${loc.lat}| ${loc.lng}| ${loc.createdAt}
+                <button class="btn btn-delete" data-id="${loc.id}">GO</button>
+                <button class="btn btn-delete" data-id="${loc.id}">Delete</button>
             </li>`)
             document.querySelector('.location-list').innerHTML = strHTMLs.join('')
         })
-
+        
+        // console.log(strHTMLs);
 }
 
 function onInsertLocation() {

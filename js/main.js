@@ -24,6 +24,10 @@ window.onload = () => {
         .catch(err => {
             console.log('Cannot get user-position', err);
         })
+
+        mapController.renderItems()
+    // mapService.getLocs()
+    //     .then(res => mapController.renderItems(res))
 }
 
 document.querySelector('.btn').addEventListener('click', (ev) => {

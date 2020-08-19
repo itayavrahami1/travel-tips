@@ -27,3 +27,10 @@ ul {
 ul h2 {
     align-self: center;
 }
+
+
+/* HELPERS */
+
+.clean-list{
+    list-style: none;
+}
