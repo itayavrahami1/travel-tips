@@ -3,14 +3,13 @@ export const mapService = {
     initMap,
     addMarker,
     panTo,
-    getPosFromClick,
-    map
 }
 
 var map;
+var gLocations;
 
 export function initMap(lat = 32.0749831, lng = 34.9120554) {
-    console.log('InitMap');
+
     return _connectGoogleApi()
         .then(() => {
             console.log('google available');
@@ -19,11 +18,7 @@ export function initMap(lat = 32.0749831, lng = 34.9120554) {
                 center: { lat, lng },
                 zoom: 15
             })
-            map.addListener('click',function(event){
-                console.log('listner',event);
-            })
-            console.log('Map!', map);
-            // return map;
+            map.addListener('click',createLocation)
         })
 }
 
@@ -55,8 +50,11 @@ function _connectGoogleApi() {
     })
 }
 
-function getPosFromClick(mapClick){
-    console.log(mapClick);
+function createLocation(mapClick){
+    // var coords = {lat: mapClick.latLng[0].toString(), lng: mapClick.latLng[1].toString()}
+    panTo(mapClick.latLng.toString())
+    console.log(mapClick.latLng.toString());
+    // var latlng = {lat:mapClick.lat, lng:mapClick.lng}
 }
 
 
