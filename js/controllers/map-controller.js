@@ -51,8 +51,13 @@ function _connectGoogleApi() {
 }
 
 function onMapClick(ev) {
-    mapService.createLocation(ev)
-        .then(res => {console.log(res,res.length);})
+    mapService.createLocation(ev, name)
+        .then(res => { console.log(res, res.length); })
+}
+
+function onGoToLocation(){
+    mapService.goToLocation(locId)
+    .then()
 }
 
 

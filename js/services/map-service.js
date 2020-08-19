@@ -1,7 +1,8 @@
 //TODO Build the LocationService managing Locations:
 //{id, name, lat, lng, weather, createdAt, updatedAt}
-
+import {mapStorage} from '../storage/loc-storage.js'
 const LOC_ID_URL = 'http://www.filltext.com/?rows=1&password={randomString|5}&pretty=true'
+const LOCS_KEY = 'myLocations'
 
 var gFavLoc = [
     {
@@ -38,20 +39,20 @@ function getPosition() {
     })
 }
 
-function createLocation(ev) {
+function createLocation(ev, name = 'home') {
     var idPrm = axios.get(LOC_ID_URL)
     return idPrm.then(res => res.data[0].password)
         .then(id => {
             var loc = {
                 id,
-                name: 'home',
+                name,
                 lat: ev.latLng.lat(),
                 lng: ev.latLng.lng(),
                 createdAt: Date.now(),
             }
             gFavLoc.push(loc);
+            mapStorage.saveLocsToStorage(LOCS_KEY,gFavLoc)
             return gFavLoc;
         })
-
 }
 
