@@ -1,17 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ES6</title>
     <link rel="stylesheet" href="main.css">
 </head>
+
 <body>
-    <h1>ES6 - OR Koren is here! asdasdsa</h1>
-    <div id="map" style="width: 100%; height: 400px;"></div>
-    <button class="btn">Click Me</button>
-    
+    <header>
+        <h1>TravelTip</h1>
+        <div class="txt-input">
+            <label for="search"></label>
+            <input id="search" type="text" placeholder="Enter Location" oninput="onInsertLocation()">
+            <button>GO</button>
+            <button>My Location</button>
+        </div>
+
+    </header>
+
+    <main>
+            <ul class="location-list">
+
+            </ul>
+        <div id="map" style="width: 50%; height: 400px;"></div>
+    </main>
     <script src="lib/axios.js"></script>
     <script type="module" src="js/main.js"></script>
 </body>
+
 </html>
