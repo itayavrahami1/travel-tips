@@ -1,7 +1,3 @@
-//TODO Build the LocationService managing Locations:
-    //{id, name, lat, lng, weather, createdAt, updatedAt}
-
-
 export const locService = {
     getLocs: getLocs,
     getPosition: getPosition
