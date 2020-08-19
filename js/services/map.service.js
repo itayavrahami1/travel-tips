@@ -2,7 +2,9 @@
 export const mapService = {
     initMap,
     addMarker,
-    panTo
+    panTo,
+    getPosFromClick,
+    map
 }
 
 var map;
@@ -17,7 +19,11 @@ export function initMap(lat = 32.0749831, lng = 34.9120554) {
                 center: { lat, lng },
                 zoom: 15
             })
+            map.addListener('click',function(event){
+                console.log('listner',event);
+            })
             console.log('Map!', map);
+            // return map;
         })
 }
 
@@ -47,6 +53,10 @@ function _connectGoogleApi() {
         elGoogleApi.onload = resolve;
         elGoogleApi.onerror = () => reject('Google script failed to load')
     })
+}
+
+function getPosFromClick(mapClick){
+    console.log(mapClick);
 }
 
 

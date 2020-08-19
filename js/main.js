@@ -2,12 +2,14 @@ console.log('Main!');
 
 import { locService } from './services/loc.service.js'
 import { mapService } from './services/map.service.js'
+// import { addEvenetListeners } from './controllers/map-controller.js'
 
 
 locService.getLocs()
     .then(locs => console.log('locs', locs))
 
 window.onload = () => {
+    // addEvenetListeners()
     mapService.initMap()
         .then(() => {
 
@@ -17,7 +19,7 @@ window.onload = () => {
 
     locService.getPosition()
         .then(pos => {
-            
+
             console.log('User position is:', pos.coords);
         })
         .catch(err => {
