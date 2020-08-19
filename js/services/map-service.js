@@ -1,6 +1,16 @@
 //TODO Build the LocationService managing Locations:
     //{id, name, lat, lng, weather, createdAt, updatedAt}
 
+    var gFavLoc = [
+        {
+            id: '001',
+            name: 'home',
+            lat: 32.0749831,
+            lng: 34.9120554,
+            createdAt: Date.now (),
+            updatedAt:
+        }
+    ]
 
 export const mapService = {
     getLocs: getLocs,

@@ -51,10 +51,13 @@ function _connectGoogleApi() {
 }
 
 function createLocation(mapClick){
-    // var coords = {lat: mapClick.latLng[0].toString(), lng: mapClick.latLng[1].toString()}
-    // panTo(mapClick.latLng.toString())
-    console.log(mapClick.latLng.toString());
-    // var latlng = {lat:mapClick.lat, lng:mapClick.lng}
+    var coords = {lat: mapClick.latLng.lat(), lng: mapClick.latLng.lng()}
+
+    var pos = {
+        id:
+        coords:
+        name:
+    }
 }
 
 
